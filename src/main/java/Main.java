@@ -62,12 +62,18 @@ public class Main {
 //        System.out.println(min);
 
         //Group
-        Map<Gender, List<Person>> collect1 = people.stream()
-                .collect(Collectors.groupingBy(Person::getGender));
-        collect1.forEach(((gender, people1) -> {
-            System.out.println(gender);
-            people1.forEach(System.out::println);
-        }));
+//        Map<Gender, List<Person>> collect1 = people.stream()
+//                .collect(Collectors.groupingBy(Person::getGender));
+//        collect1.forEach(((gender, people1) -> {
+//            System.out.println(gender);
+//            people1.forEach(System.out::println);
+//        }));
+
+        Optional<String> s = people.stream()
+                .filter(person -> person.getGender().equals(Gender.FEMALE))
+                .max(Comparator.comparing(Person::getAge))
+                .map(Person::getName);
+        System.out.println(s);
 
     }
 
